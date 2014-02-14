@@ -40,6 +40,7 @@ module JavaBuildpack::Component
       @component_name = self.class.to_s.space_case
       @configuration  = context[:configuration]
       @droplet        = context[:droplet]
+      $stdout.sync    = false
     end
 
     # @!macro [new] base_component_detect
