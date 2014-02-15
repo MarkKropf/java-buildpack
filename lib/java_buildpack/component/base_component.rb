@@ -121,7 +121,7 @@ module JavaBuildpack::Component
       download(version, uri, name) do |file|
         with_timing "Expanding #{name} to #{target_directory.relative_path_from(@droplet.root)}" do
           FileUtils.mkdir_p target_directory
-          shell "tar xzf #{file.path} -C #{target_directory} --strip 1 2>&1"
+          output = shell "tar xzf #{file.path} -C #{target_directory} --strip 1 2>&1"
         end
       end
     end
@@ -137,14 +137,14 @@ module JavaBuildpack::Component
         with_timing "Expanding #{name} to #{target_directory.relative_path_from(@droplet.root)}" do
           if strip_top_level
             Dir.mktmpdir do |root|
-              shell "unzip -qq #{file.path} -d #{root} 2>&1"
+              output = shell "unzip -qq #{file.path} -d #{root} 2>&1"
 
               FileUtils.mkdir_p target_directory.parent
               FileUtils.mv Pathname.new(root).children.first, target_directory
             end
           else
             FileUtils.mkdir_p target_directory
-            shell "unzip -qq #{file.path} -d #{target_directory} 2>&1"
+            output = shell "unzip -qq #{file.path} -d #{target_directory} 2>&1"
           end
         end
       end
