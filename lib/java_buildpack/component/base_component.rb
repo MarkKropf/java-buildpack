@@ -155,6 +155,8 @@ module JavaBuildpack::Component
     # @param [String] caption the caption to print when timing starts
     # @return [void]
     def with_timing(caption)
+      $stdout.sync = false
+      $stderr.sync = false
       start_time = Time.now
       print "       #{caption} "
 
