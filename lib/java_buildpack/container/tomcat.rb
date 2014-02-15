@@ -118,10 +118,10 @@ module JavaBuildpack::Container
 
     def expand(file)
       with_timing "Expanding Tomcat to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
-        #FileUtils.mkdir_p @droplet.sandbox
-        #shell "tar xzf #{file.path} -C #{@droplet.sandbox} --strip 1 --exclude webapps 2>&1"
+        FileUtils.mkdir_p @droplet.sandbox
+        output = shell "tar xzf #{file.path} -C #{@droplet.sandbox} --strip 1 --exclude webapps 2>&1"
 
-        #@droplet.copy_resources
+        @droplet.copy_resources
       end
     end
 
