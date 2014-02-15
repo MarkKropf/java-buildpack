@@ -162,7 +162,7 @@ module JavaBuildpack::Component
 
       yield
 
-      puts "(#{(Time.now - start_time).duration})"
+      print "(#{(Time.now - start_time).duration})\n"
     end
 
   end
