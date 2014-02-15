@@ -159,9 +159,6 @@ module JavaBuildpack::Component
       $stderr.sync = false
       start_time = Time.now
       print "       #{caption} "
-
-      yield
-
       print "(#{(Time.now - start_time).duration})\n"
     end
 
